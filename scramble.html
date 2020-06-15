@@ -135,7 +135,14 @@
           output.innerHTML = "Attempt Count = " + attempt;
         } else {
           output.style.color = "green";
-          output.innerHTML = "Found in " + attempt + " tries";
+          output.innerHTML =
+            "Found in " +
+            attempt +
+            " tries, Random of <b>" +
+            word +
+            "</b> was generated as <b>" +
+            wordDisp.innerText +
+            "</b>";
           btn.innerHTML = "Start";
           wordDisp.innerText = "";
           inp.style.display = "none";
