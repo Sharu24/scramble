@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>
+      Compare Arrays
+    </h1>
+
+    <script>
+      Array.prototype.equals = function(arr) {
+        console.log(this);
+        console.log(arr);
+        if (!arr) return false;
+        if (this.length !== arr.length) return false;
+
+        for (var i = 0; i < this.length; i++) {
+          if (this[i] instanceof Array && arr[i] instanceof Array) {
+            if (!this[i].equals(arr[i])) {
+              return false;
+            }
+          } else if (this[i] !== arr[i]) {
+            return false;
+          }
+        }
+        return true;
+      };
+
+      let arr1 = [1, 2, 3, [4, 5]];
+      let arr2 = [1, 2, 3, [4, 5]];
+
+      console.log(arr1.equals(arr2));
+      console.log([1, 2, 3, 4].equals(["1", 2, 3, 4]));
+      console.log(
+        JSON.stringify[(1, 2, 3, 4)] === JSON.stringify[(1, 2, 3, 4)]
+      );
+      console.log(
+        JSON.stringify[(1, 2, 3, [1, 4])] === JSON.stringify[(1, 2, 3, [1, 4])]
+      );
+
+      function mixMe1(arr) {
+        let ind,
+          n = arr.length,
+          ranArr = [],
+          cnt = 0;
+
+        while (n) {
+          ind = Math.floor(Math.random() * arr.length);
+          if (ind in arr) {
+            ranArr.push(arr[ind]);
+            delete arr[ind];
+            n--;
+          }
+          cnt++;
+        }
+        console.log(cnt);
+        return ranArr;
+      }
+
+      function mixMe2(arr) {
+        let newArr = [],
+          ind,
+          n = arr.length;
+
+        while (n) {
+          ind = Math.floor(Math.random() * n--);
+
+          newArr.push(arr.splice(ind, 1)[0]);
+        }
+        return newArr;
+      }
+
+      function mixMe3(arr) {
+        let m = arr.length,
+          i,
+          temp;
+
+        while (m) {
+          i = Math.floor(Math.random() * m--);
+
+          temp = arr[m];
+          arr[m] = arr[i];
+          arr[i] = temp;
+
+          console.log("i= " + i + ", m=", m);
+        }
+        return arr;
+      }
+
+      console.log(mixMe3(["s", "h", "a", "r", "u"]));
+    </script>
+  </body>
+</html>
